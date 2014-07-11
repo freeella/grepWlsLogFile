@@ -36,7 +36,7 @@ Filter by logger.
 
 Filter by severity.
 
-=item --msgid BEA-number   -m serverName.log
+=item --msgid BEA-number   -m BEA-number
 
 Filter by message id.
 

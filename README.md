@@ -25,7 +25,7 @@ Runtime:
 
     Filter by severity.
 
-- \--msgid BEA-number   -m serverName.log
+- \--msgid BEA-number   -m BEA-number
 
     Filter by message id.
 

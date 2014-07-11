@@ -158,8 +158,8 @@ Filter by logger.
 .IP "\-\-severity severityName   \-s severityName" 15
 .IX Item "--severity severityName -s severityName"
 Filter by severity.
-.IP "\-\-msgid BEA-number   \-m serverName.log" 15
-.IX Item "--msgid BEA-number -m serverName.log"
+.IP "\-\-msgid BEA-number   \-m BEA-number" 15
+.IX Item "--msgid BEA-number -m BEA-number"
 Filter by message id.
 .SH "AUTHORS"
 .IX Header "AUTHORS"
