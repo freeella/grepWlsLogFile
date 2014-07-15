@@ -133,13 +133,13 @@
 .\" ========================================================================
 .\"
 .IX Title "GREPWLSLOGFILE 1"
-.TH GREPWLSLOGFILE 1 "2014-07-11" "perl v5.16.3" "User Contributed Perl Documentation"
+.TH GREPWLSLOGFILE 1 "2014-07-15" "perl v5.16.3" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
-grepWlsLogFile.pl \- helps searching WLS log files
+grepWlsLogFile.pl \- helps filtering and searching WebLogic Server log files
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
 \&\f(CW\*(C`grepWlsLogFile.pl [\-f serverName.log]
@@ -158,9 +158,11 @@ Filter by logger.
 .IP "\-\-severity severityName   \-s severityName" 15
 .IX Item "--severity severityName -s severityName"
 Filter by severity.
-.IP "\-\-msgid BEA-number   \-m BEA-number" 15
-.IX Item "--msgid BEA-number -m BEA-number"
-Filter by message id.
+.IP "\-\-msgid message-number   \-m message-number" 15
+.IX Item "--msgid message-number -m message-number"
+Filter by message id. A WebLogic Server message id usually has the format 
+BEA\-<6 numbers>. If no prefix is given, \s-1BEA\-\s0 and the missing zeros are 
+automatically prepended.
 .SH "AUTHORS"
 .IX Header "AUTHORS"
 Kai Ellinger <coding@blicke.de>

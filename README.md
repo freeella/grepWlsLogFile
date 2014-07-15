@@ -1,6 +1,6 @@
 # NAME
 
-grepWlsLogFile.pl - helps searching WLS log files
+grepWlsLogFile.pl - helps filtering and searching WebLogic Server log files
 
 # SYNOPSIS
 
@@ -25,9 +25,11 @@ Runtime:
 
     Filter by severity.
 
-- \--msgid BEA-number   -m BEA-number
+- \--msgid message-number   -m message-number
 
-    Filter by message id.
+    Filter by message id. A WebLogic Server message id usually has the format 
+    BEA-<6 numbers>. If no prefix is given, BEA- and the missing zeros are 
+    automatically prepended.
 
 # AUTHORS
 

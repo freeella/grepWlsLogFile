@@ -9,7 +9,7 @@ use Pod::Usage;   # installed by default via perlmodlib
 
 =head1 NAME
 
-grepWlsLogFile.pl - helps searching WLS log files
+grepWlsLogFile.pl - helps filtering and searching WebLogic Server log files
 
 =head1 SYNOPSIS
 
@@ -36,9 +36,11 @@ Filter by logger.
 
 Filter by severity.
 
-=item --msgid BEA-number   -m BEA-number
+=item --msgid message-number   -m message-number
 
-Filter by message id.
+Filter by message id. A WebLogic Server message id usually has the format 
+BEA-<6 numbers>. If no prefix is given, BEA- and the missing zeros are 
+automatically prepended.
 
 =back
 
@@ -91,6 +93,14 @@ sub check_args {
 		'm:s' => \$o_msgid,  'msgid:s'  => \$o_msgid
 	);
 
+	# add BEA- if no other prefix was given
+	if($o_msgid =~ /^\d+$/) {
+		if(length($o_msgid) < 6) {
+			my $	missingZero = 6 - length($o_msgid);
+			$o_msgid = ("0" x $missingZero) . $o_msgid
+		};
+		$o_msgid = "BEA-" . $o_msgid;
+	}
 
 	### print help if requested
 	if (!defined($o_file) || ( !defined($o_logger) && !defined($o_severity) && !defined($o_msgid)) ) {
