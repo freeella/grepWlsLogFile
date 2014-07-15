@@ -96,7 +96,7 @@ sub check_args {
 	# add BEA- if no other prefix was given
 	if($o_msgid =~ /^\d+$/) {
 		if(length($o_msgid) < 6) {
-			my $	missingZero = 6 - length($o_msgid);
+			my $missingZero = 6 - length($o_msgid);
 			$o_msgid = ("0" x $missingZero) . $o_msgid
 		};
 		$o_msgid = "BEA-" . $o_msgid;
