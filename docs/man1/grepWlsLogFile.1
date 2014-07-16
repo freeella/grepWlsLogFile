@@ -153,35 +153,62 @@ grepWlsLogFile.pl \- helps filtering and searching WebLogic Server log files
                  [\-\-debug]\*(C'\fR
 .SH "OPTIONS"
 .IX Header "OPTIONS"
-.IP "\-\-file serverName.log   \-f serverName.log" 5
-.IX Item "--file serverName.log -f serverName.log"
+.IP "\-\-file serverName.log" 5
+.IX Item "--file serverName.log"
+.PD 0
+.IP "\-f serverName.log" 5
+.IX Item "-f serverName.log"
+.PD
 Path to \s-1WLS\s0 server log
-.IP "\-\-logger loggerName   \-l loggerName" 5
-.IX Item "--logger loggerName -l loggerName"
+.IP "\-\-logger loggerName" 5
+.IX Item "--logger loggerName"
+.PD 0
+.IP "\-l loggerName" 5
+.IX Item "-l loggerName"
+.PD
 Filter by logger.
-.IP "\-\-severity severityName   \-s severityName" 5
-.IX Item "--severity severityName -s severityName"
+.IP "\-\-severity severityName" 5
+.IX Item "--severity severityName"
+.PD 0
+.IP "\-s severityName" 5
+.IX Item "-s severityName"
+.PD
 Filter by severity.
-.IP "\-\-msgid message-number   \-m message-number" 5
-.IX Item "--msgid message-number -m message-number"
+.IP "\-\-msgid message-number" 5
+.IX Item "--msgid message-number"
+.PD 0
+.IP "\-m message-number" 5
+.IX Item "-m message-number"
+.PD
 Filter by message id. A WebLogic Server message id usually has the format 
 BEA\-<6 numbers>. If no prefix is given, \s-1BEA\-\s0 and the missing zeros are 
 automatically prepended.
-.IP "\-\-tranid jta-transaction   \-t jta-transaction" 5
-.IX Item "--tranid jta-transaction -t jta-transaction"
+.IP "\-\-tranid jta-transaction" 5
+.IX Item "--tranid jta-transaction"
+.PD 0
+.IP "\-t jta-transaction" 5
+.IX Item "-t jta-transaction"
+.PD
 In case a log message is created out of a \s-1JTA\s0 transaction context, 
 the transaction id is logged as well.
 .Sp
 This transaction id can be used as search criteria.
-.IP "\-\-content 'search text'   \-c 'search text'" 5
-.IX Item "--content 'search text' -c 'search text'"
-Us a Perl style regular expression to search the free text part of the log message.
+.IP "\-\-content 'search text'" 5
+.IX Item "--content 'search text'"
+.PD 0
+.IP "\-c 'search text'" 5
+.IX Item "-c 'search text'"
+.PD
+Use a Perl style regular expression to search the free text part of the log message.
 .Sp
 Regex example: Lines containing 'managed1' and 'maXaged3' will be printed but not 'managed2' or 'Managed3'
 .Sp
 \&\f(CW\*(C`./grepWlsLogFile.pl \-f /path/to/AdminServer.log \-c \*(Aqma.ag\eSd[31]\*(Aq\*(C'\fR
-.IP "\-\-help   \-?" 5
-.IX Item "--help -?"
+.IP "\-\-help" 5
+.IX Item "--help"
+.PD 0
+.IP "\-?" 5
+.PD
 Showing help screen
 .IP "\-\-version" 5
 .IX Item "--version"

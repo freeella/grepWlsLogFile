@@ -31,31 +31,51 @@
 
 <dl>
 
-<dt id="file-serverName.log--f-serverName.log">--file serverName.log -f serverName.log</dt>
+<dt id="file-serverName.log">--file serverName.log</dt>
+<dd>
+
+</dd>
+<dt id="f-serverName.log">-f serverName.log</dt>
 <dd>
 
 <p>Path to WLS server log</p>
 
 </dd>
-<dt id="logger-loggerName--l-loggerName">--logger loggerName -l loggerName</dt>
+<dt id="logger-loggerName">--logger loggerName</dt>
+<dd>
+
+</dd>
+<dt id="l-loggerName">-l loggerName</dt>
 <dd>
 
 <p>Filter by logger.</p>
 
 </dd>
-<dt id="severity-severityName--s-severityName">--severity severityName -s severityName</dt>
+<dt id="severity-severityName">--severity severityName</dt>
+<dd>
+
+</dd>
+<dt id="s-severityName">-s severityName</dt>
 <dd>
 
 <p>Filter by severity.</p>
 
 </dd>
-<dt id="msgid-message-number--m-message-number">--msgid message-number -m message-number</dt>
+<dt id="msgid-message-number">--msgid message-number</dt>
+<dd>
+
+</dd>
+<dt id="m-message-number">-m message-number</dt>
 <dd>
 
 <p>Filter by message id. A WebLogic Server message id usually has the format BEA-&lt;6 numbers&gt;. If no prefix is given, BEA- and the missing zeros are automatically prepended.</p>
 
 </dd>
-<dt id="tranid-jta-transaction--t-jta-transaction">--tranid jta-transaction -t jta-transaction</dt>
+<dt id="tranid-jta-transaction">--tranid jta-transaction</dt>
+<dd>
+
+</dd>
+<dt id="t-jta-transaction">-t jta-transaction</dt>
 <dd>
 
 <p>In case a log message is created out of a JTA transaction context, the transaction id is logged as well.</p>
@@ -63,17 +83,25 @@
 <p>This transaction id can be used as search criteria.</p>
 
 </dd>
-<dt id="content-search-text--c-search-text">--content &#39;search text&#39; -c &#39;search text&#39;</dt>
+<dt id="content-search-text">--content &#39;search text&#39;</dt>
 <dd>
 
-<p>Us a Perl style regular expression to search the free text part of the log message.</p>
+</dd>
+<dt id="c-search-text">-c &#39;search text&#39;</dt>
+<dd>
+
+<p>Use a Perl style regular expression to search the free text part of the log message.</p>
 
 <p>Regex example: Lines containing &#39;managed1&#39; and &#39;maXaged3&#39; will be printed but not &#39;managed2&#39; or &#39;Managed3&#39;</p>
 
 <p><code>./grepWlsLogFile.pl -f /path/to/AdminServer.log -c &#39;ma.ag\Sd[31]&#39;</code></p>
 
 </dd>
-<dt id="help---">--help -?</dt>
+<dt id="help">--help</dt>
+<dd>
+
+</dd>
+<dt id="pod--">-?</dt>
 <dd>
 
 <p>Showing help screen</p>

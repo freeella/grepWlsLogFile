@@ -16,40 +16,47 @@ grepWlsLogFile.pl - helps filtering and searching WebLogic Server log files
 
 # OPTIONS
 
-- \--file serverName.log   -f serverName.log
+- \--file serverName.log
+- \-f serverName.log
 
     Path to WLS server log
 
-- \--logger loggerName   -l loggerName
+- \--logger loggerName
+- \-l loggerName
 
     Filter by logger.
 
-- \--severity severityName   -s severityName
+- \--severity severityName
+- \-s severityName
 
     Filter by severity.
 
-- \--msgid message-number   -m message-number
+- \--msgid message-number
+- \-m message-number
 
     Filter by message id. A WebLogic Server message id usually has the format 
     BEA-<6 numbers>. If no prefix is given, BEA- and the missing zeros are 
     automatically prepended.
 
-- \--tranid jta-transaction   -t jta-transaction
+- \--tranid jta-transaction
+- \-t jta-transaction
 
     In case a log message is created out of a JTA transaction context, 
     the transaction id is logged as well.
 
     This transaction id can be used as search criteria.
 
-- \--content 'search text'   -c 'search text'
+- \--content 'search text'
+- \-c 'search text'
 
-    Us a Perl style regular expression to search the free text part of the log message.
+    Use a Perl style regular expression to search the free text part of the log message.
 
     Regex example: Lines containing 'managed1' and 'maXaged3' will be printed but not 'managed2' or 'Managed3'
 
     `./grepWlsLogFile.pl -f /path/to/AdminServer.log -c 'ma.ag\Sd[31]'`
 
-- \--help   -?
+- \--help
+- \-?
 
     Showing help screen
 
