@@ -12,7 +12,7 @@ grepWlsLogFile.pl - helps filtering and searching WebLogic Server log files
                  [-c "search text"]
                  [--help]
                  [--version]
-                 [--debug]>>>`
+                 [--debug]`
 
 # OPTIONS
 

@@ -21,7 +21,7 @@ C<<< grepWlsLogFile.pl [-f serverName.log]
                  [-c "search text"]
                  [--help]
                  [--version]
-                 [--debug]>>>
+                 [--debug] >>>
 
 =head1 OPTIONS
 
