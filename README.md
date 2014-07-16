@@ -7,11 +7,14 @@ grepWlsLogFile.pl - helps filtering and searching WebLogic Server log files
 `grepWlsLogFile.pl [-f serverName.log]
                  [-l loggerName]
                  [-s severityName]
-                 [-m BEA-number]`
+                 [-m BEA-number]
+                 [-t jta-transaction]
+                 [-c "search text"]
+                 [--help]
+                 [--version]
+                 [--debug]>>>`
 
 # OPTIONS
-
-Runtime:
 
 - \--file serverName.log   -f serverName.log
 
@@ -30,6 +33,33 @@ Runtime:
     Filter by message id. A WebLogic Server message id usually has the format 
     BEA-<6 numbers>. If no prefix is given, BEA- and the missing zeros are 
     automatically prepended.
+
+- \--tranid jta-transaction   -t jta-transaction
+
+    In case a log message is created out of a JTA transaction context, 
+    the transaction id is logged as well.
+
+    This transaction id can be used as search criteria.
+
+- \--content 'search text'   -c 'search text'
+
+    Us a Perl style regular expression to search the free text part of the log message.
+
+    Regex example: Lines containing 'managed1' and 'maXaged3' will be printed but not 'managed2' or 'Managed3'
+
+    `./grepWlsLogFile.pl -f /path/to/AdminServer.log -c 'ma.ag\Sd[31]'`
+
+- \--help   -?
+
+    Showing help screen
+
+- \--version
+
+    Showing version info
+
+- \--debug
+
+    Enabling debug
 
 # AUTHORS
 

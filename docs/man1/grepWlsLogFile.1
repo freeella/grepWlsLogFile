@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GREPWLSLOGFILE 1"
-.TH GREPWLSLOGFILE 1 "2014-07-15" "perl v5.16.3" "User Contributed Perl Documentation"
+.TH GREPWLSLOGFILE 1 "2014-07-16" "perl v5.16.3" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -145,24 +145,50 @@ grepWlsLogFile.pl \- helps filtering and searching WebLogic Server log files
 \&\f(CW\*(C`grepWlsLogFile.pl [\-f serverName.log]
                  [\-l loggerName]
                  [\-s severityName]
-                 [\-m BEA\-number]\*(C'\fR
+                 [\-m BEA\-number]
+                 [\-t jta\-transaction]
+                 [\-c "search text"]
+                 [\-\-help]
+                 [\-\-version]
+                 [\-\-debug]>>>\*(C'\fR
 .SH "OPTIONS"
 .IX Header "OPTIONS"
-Runtime:
-.IP "\-\-file serverName.log   \-f serverName.log" 15
+.IP "\-\-file serverName.log   \-f serverName.log" 5
 .IX Item "--file serverName.log -f serverName.log"
 Path to \s-1WLS\s0 server log
-.IP "\-\-logger loggerName   \-l loggerName" 15
+.IP "\-\-logger loggerName   \-l loggerName" 5
 .IX Item "--logger loggerName -l loggerName"
 Filter by logger.
-.IP "\-\-severity severityName   \-s severityName" 15
+.IP "\-\-severity severityName   \-s severityName" 5
 .IX Item "--severity severityName -s severityName"
 Filter by severity.
-.IP "\-\-msgid message-number   \-m message-number" 15
+.IP "\-\-msgid message-number   \-m message-number" 5
 .IX Item "--msgid message-number -m message-number"
 Filter by message id. A WebLogic Server message id usually has the format 
 BEA\-<6 numbers>. If no prefix is given, \s-1BEA\-\s0 and the missing zeros are 
 automatically prepended.
+.IP "\-\-tranid jta-transaction   \-t jta-transaction" 5
+.IX Item "--tranid jta-transaction -t jta-transaction"
+In case a log message is created out of a \s-1JTA\s0 transaction context, 
+the transaction id is logged as well.
+.Sp
+This transaction id can be used as search criteria.
+.IP "\-\-content 'search text'   \-c 'search text'" 5
+.IX Item "--content 'search text' -c 'search text'"
+Us a Perl style regular expression to search the free text part of the log message.
+.Sp
+Regex example: Lines containing 'managed1' and 'maXaged3' will be printed but not 'managed2' or 'Managed3'
+.Sp
+\&\f(CW\*(C`./grepWlsLogFile.pl \-f /path/to/AdminServer.log \-c \*(Aqma.ag\eSd[31]\*(Aq\*(C'\fR
+.IP "\-\-help   \-?" 5
+.IX Item "--help -?"
+Showing help screen
+.IP "\-\-version" 5
+.IX Item "--version"
+Showing version info
+.IP "\-\-debug" 5
+.IX Item "--debug"
+Enabling debug
 .SH "AUTHORS"
 .IX Header "AUTHORS"
 Kai Ellinger <coding@blicke.de>

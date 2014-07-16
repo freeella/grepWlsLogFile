@@ -17,6 +17,7 @@
   <li><a href="#OPTIONS">OPTIONS</a></li>
   <li><a href="#AUTHORS">AUTHORS</a></li>
   <li><a href="#COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</a></li>
+  <li><a href="#POD-ERRORS">POD ERRORS</a></li>
 </ul>
 
 <h1 id="NAME">NAME</h1>
@@ -25,11 +26,9 @@
 
 <h1 id="SYNOPSIS">SYNOPSIS</h1>
 
-<p><code>grepWlsLogFile.pl [-f serverName.log] [-l loggerName] [-s severityName] [-m BEA-number]</code></p>
+<p><code>grepWlsLogFile.pl [-f serverName.log] [-l loggerName] [-s severityName] [-m BEA-number] [-t jta-transaction] [-c &quot;search text&quot;] [--help] [--version] [--debug]&gt;&gt;&gt;</code></p>
 
 <h1 id="OPTIONS">OPTIONS</h1>
-
-<p>Runtime:</p>
 
 <dl>
 
@@ -57,6 +56,42 @@
 <p>Filter by message id. A WebLogic Server message id usually has the format BEA-&lt;6 numbers&gt;. If no prefix is given, BEA- and the missing zeros are automatically prepended.</p>
 
 </dd>
+<dt id="tranid-jta-transaction--t-jta-transaction">--tranid jta-transaction -t jta-transaction</dt>
+<dd>
+
+<p>In case a log message is created out of a JTA transaction context, the transaction id is logged as well.</p>
+
+<p>This transaction id can be used as search criteria.</p>
+
+</dd>
+<dt id="content-search-text--c-search-text">--content &#39;search text&#39; -c &#39;search text&#39;</dt>
+<dd>
+
+<p>Us a Perl style regular expression to search the free text part of the log message.</p>
+
+<p>Regex example: Lines containing &#39;managed1&#39; and &#39;maXaged3&#39; will be printed but not &#39;managed2&#39; or &#39;Managed3&#39;</p>
+
+<p><code>./grepWlsLogFile.pl -f /path/to/AdminServer.log -c &#39;ma.ag\Sd[31]&#39;</code></p>
+
+</dd>
+<dt id="help---">--help -?</dt>
+<dd>
+
+<p>Showing help screen</p>
+
+</dd>
+<dt id="version">--version</dt>
+<dd>
+
+<p>Showing version info</p>
+
+</dd>
+<dt id="debug">--debug</dt>
+<dd>
+
+<p>Enabling debug</p>
+
+</dd>
 </dl>
 
 <h1 id="AUTHORS">AUTHORS</h1>
@@ -74,6 +109,20 @@
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 
 <p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<h1 id="POD-ERRORS">POD ERRORS</h1>
+
+<p>Hey! <b>The above document had some coding errors, which are explained below:</b></p>
+
+<dl>
+
+<dt id="Around-line-16:">Around line 16:</dt>
+<dd>
+
+<p>Unterminated C&lt;&lt; ... &gt;&gt; sequence</p>
+
+</dd>
+</dl>
 
 
 </body>
