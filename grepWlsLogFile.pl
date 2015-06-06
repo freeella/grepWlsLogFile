@@ -268,15 +268,13 @@ sub grep_file {
 		if( ( ! defined($o_content) ) ) {
 			# - if no content search pattern is given, print line by line
 			#   because all search criteria are always in the first line
-			# - $multi_line_buffer is only '' if  case no content search is used
-			#   or in case a match was found before
-			# In both cases we don't need to buffer any more
 			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) { print $logfile_line; }
 		} elsif ( defined($o_content) && $line_to_print[3] == 1) {
-			# - if content search pattern is given, buffer line
+			# - if content search pattern is given, buffer lines and reset printed buffer
 			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) {
-				# printing and truncating
+				# printing
 				print $multi_line_buffer;
+				# truncating
 				$multi_line_buffer = '';
 			}
 		}
