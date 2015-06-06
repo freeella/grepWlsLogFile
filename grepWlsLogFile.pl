@@ -179,7 +179,7 @@ sub like_to_print {
 	
 	#print "to_parse -@to_parse-";
 	foreach my $values ( (shift, shift, shift, shift) ) {
-		if($values == 2) {
+		if(defined($values) && $values == 2) {
 			# stop if one mismatch was found
 			$ret_value = 0;
 			last;
@@ -207,7 +207,7 @@ sub grep_file {
 		if($logfile_line =~ /^#{4}/)
 		{	
 			# reset each new log entry
-			@line_to_print = (0,0,0);
+			@line_to_print = (0,0,0,0);
 			
 			# check filters
 			# Example line: 
