@@ -120,7 +120,7 @@ THE SOFTWARE.
 ##### END: Documentation in POD format #####
 
 # my current version number to be used by GetOptions and POD
-$main::VERSION = "0.1.0";
+$main::VERSION = "0.2.0";
 
 my $o_file;
 my $o_logger;
@@ -167,7 +167,6 @@ sub check_args {
 		print "ERROR: Not yet implemented!\n";
 		return 0;
 	} elsif ( defined($o_content) ) {
-		print "WARN: Multi line content grep not yet implemented! Only searching first line for now!\n";
 		return 1;
 	}
 	return 1;
@@ -199,6 +198,7 @@ sub grep_file {
 	open(WLSLOG,$o_file) or die "ERROR: Can't open log file '$o_file': $!";
 	
 	my @line_to_print = (0,0,0);
+	my $multi_line_buffer = '';
 	
 	while(defined(my $logfile_line = <WLSLOG>))
 	{
@@ -208,6 +208,8 @@ sub grep_file {
 		{	
 			# reset each new log entry
 			@line_to_print = (0,0,0,0);
+			# reset buffer
+			$multi_line_buffer = '';
 			
 			# check filters
 			# Example line: 
@@ -245,20 +247,53 @@ sub grep_file {
 				}
 			}
 			if(defined($o_content) ) {
-				if($line_msgcontent =~ /$o_content/ ) {
+				$multi_line_buffer .= $logfile_line;
+				$line_to_print[3] = match_content($line_msgcontent);
+			}
+
+		} else {
+			# if being in subsequent lines
+			if(defined($o_content) ) {
+				# buffer lines when greping for content
+				$multi_line_buffer .= $logfile_line;
+
+				# if match found in any subsequent line, mark section to be printed
+				if( match_content($logfile_line) == 1) {
 					$line_to_print[3] = 1;
-				} else {
-					$line_to_print[3] = 2;
 				}
 			}
 		}
 		
 		# print if all is matching
-		if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) { print $logfile_line; }
+		if( ( ! defined($o_content) ) ) {
+			# - if no content search pattern is given, print line by line
+			#   because all search criteria are always in the first line
+			# - $multi_line_buffer is only '' if  case no content search is used
+			#   or in case a match was found before
+			# In both cases we don't need to buffer any more
+			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) { print $logfile_line; }
+		} elsif ( defined($o_content) && $line_to_print[3] == 1) {
+			# - if content search pattern is given, buffer line
+			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) {
+				# printing and truncating
+				print $multi_line_buffer;
+				$multi_line_buffer = '';
+			}
+		}
+
 	} # END while
 	
 	close(WLSLOG);
 	$DEBUG && print "DEBUG: grep_file() end!\n";
+}
+
+sub match_content {
+	my $line_msgcontent = shift;
+		if($line_msgcontent =~ /$o_content/ ) {
+			return 1;
+		} else {
+			return 2;
+		}
 }
 
 #### MAIN
