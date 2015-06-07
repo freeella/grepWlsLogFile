@@ -156,8 +156,14 @@ sub check_args {
 		$o_msgid = "BEA-" . $o_msgid;
 	}
 
-	# print help if requested
-	if (defined($o_help) || !defined($o_file) || ( !defined($o_logger) && !defined($o_severity) && !defined($o_msgid)) && !defined($o_tranid) && !defined($o_content) ) {
+	# print help
+	if (	# if help is requested
+		defined($o_help) || 
+		# no log file to open
+		!defined($o_file) ||
+		# nothing to search
+		( !defined($o_logger) && !defined($o_severity) && !defined($o_msgid) && !defined($o_tranid) && !defined($o_content) ) 
+			) {
 		pod2usage(-verbose => 99, -sections => "NAME|SYNOPSIS|OPTIONS");
 		return 0;
 	}
