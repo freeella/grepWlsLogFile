@@ -163,7 +163,7 @@ sub check_args {
 		!defined($o_file) ||
 		# nothing to search
 		( !defined($o_logger) && !defined($o_severity) && !defined($o_msgid) && !defined($o_tranid) && !defined($o_content) ) 
-			) {
+	) {
 		pod2usage(-verbose => 99, -sections => "NAME|SYNOPSIS|OPTIONS");
 		return 0;
 	}
@@ -182,8 +182,8 @@ sub like_to_print {
 	# default is not to print
 	my $ret_value = 0;
 	
-	#print "to_parse -@to_parse-";
-	foreach my $values ( (shift, shift, shift, shift) ) {
+	# matching fields (logger, severity, msgid, content, tranid)
+	foreach my $values ( @_ ) {
 		if(defined($values) && $values == 2) {
 			# stop if one mismatch was found
 			$ret_value = 0;
@@ -203,7 +203,8 @@ sub grep_file {
 	$DEBUG && print "DEBUG: grep_file() start!\n";
 	open(WLSLOG,$o_file) or die "ERROR: Can't open log file '$o_file': $!";
 	
-	my @line_to_print = (0,0,0);
+	# (logger, severity, msgid, content, tranid)
+	my @line_to_print = (0,0,0,0,0);
 	my $multi_line_buffer = '';
 	
 	while(defined(my $logfile_line = <WLSLOG>))
@@ -213,7 +214,7 @@ sub grep_file {
 		if($logfile_line =~ /^#{4}/)
 		{	
 			# reset each new log entry
-			@line_to_print = (0,0,0,0);
+			@line_to_print = (0,0,0,0,0);
 			# reset buffer
 			$multi_line_buffer = '';
 			
@@ -256,6 +257,11 @@ sub grep_file {
 				$multi_line_buffer .= $logfile_line;
 				$line_to_print[3] = match_content($line_msgcontent);
 			}
+			if(defined($o_tranid) ) {
+				# TODO - need to implement check for transaction id here
+				# setting $line_to_print[4] = 0|1|2
+
+			}
 
 		} else {
 			# if being in subsequent lines
@@ -274,10 +280,10 @@ sub grep_file {
 		if( ( ! defined($o_content) ) ) {
 			# - if no content search pattern is given, print line by line
 			#   because all search criteria are always in the first line
-			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) { print $logfile_line; }
+			if(like_to_print(@line_to_print)) { print $logfile_line; }
 		} elsif ( defined($o_content) && $line_to_print[3] == 1) {
 			# - if content search pattern is given, buffer lines and reset printed buffer
-			if(like_to_print($line_to_print[0],$line_to_print[1],$line_to_print[2],$line_to_print[3])) {
+			if(like_to_print(@line_to_print)) {
 				# printing
 				print $multi_line_buffer;
 				# truncating
